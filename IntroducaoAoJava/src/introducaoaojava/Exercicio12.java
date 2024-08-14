@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Mauri
+ * @author Bruno Klein
  */
 public class Exercicio12 {
 
