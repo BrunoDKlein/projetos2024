@@ -11,22 +11,18 @@ import java.util.Scanner;
  *
  * @author Bruno Klein
  */
-public class Exercicio07 {
+public class Exemplo {
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        double pesoideal=0;
-        System.out.println("Digite sua altura em cm");
-        double altura = entrada.nextInt();
-        System.out.println("Digite seu sexo em F ou M");
+        System.out.println("Degite F ou M");
         String sexo = entrada.next();
-        if (sexo.equals("M")) {
-            pesoideal = (72.7 * (altura/100)) - 58;
-        } else if (sexo.equals("F")) {
-            pesoideal = (62.1 * (altura/100)) - 44.7;
+        if (sexo.equals("F")) {
+            System.out.println("O sexo é feminino");
+        } else if (sexo.equals("M")) {
+            System.out.println("O sexo é masculino");
         } else {
             System.out.println("A entrada não é valida");
         }
-        System.out.println("Seu peso ideal é: " + pesoideal+"Kg");
     }
 }
