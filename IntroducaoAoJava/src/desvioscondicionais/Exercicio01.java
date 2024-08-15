@@ -17,7 +17,6 @@ public class Exercicio01 {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Digite seu nome");
         String nome = entrada.next();
-
         System.out.println("Digite sua idade");
         int idade = entrada.nextInt();
 

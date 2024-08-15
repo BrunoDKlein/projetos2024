@@ -17,11 +17,10 @@ public class Exercicio05 {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Digite um número");
         int numero = entrada.nextInt();
-
         if (numero % 2 == 0) {
-            numero=numero+5;
+            numero = numero + 5;
         } else {
-            numero=numero+8;
+            numero = numero + 8;
         }
         System.out.println(numero);
     }

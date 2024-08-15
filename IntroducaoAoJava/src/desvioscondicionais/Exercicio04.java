@@ -17,11 +17,11 @@ public class Exercicio04 {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Digite um número");
         double numero = entrada.nextDouble();
-       
-        if (numero>=0) {
-            numero=numero*2;
+
+        if (numero >= 0) {
+            numero = numero * 2;
         } else {
-            numero=numero*3;
+            numero = numero * 3;
         }
         System.out.println(numero);
     }

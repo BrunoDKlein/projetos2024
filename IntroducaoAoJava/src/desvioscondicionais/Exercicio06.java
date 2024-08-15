@@ -21,7 +21,6 @@ public class Exercicio06 {
         double v2 = entrada.nextDouble();
         System.out.println("Digite o valor 3");
         double v3 = entrada.nextDouble();
-
         if (v1 > v2 && v1 > v3 && v2 > v3) {
             System.out.println(v1 + "; " + v2 + "; " + v3);
         } else if (v1 > v2 && v1 > v3 && v2 < v3) {

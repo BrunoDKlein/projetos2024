@@ -22,7 +22,6 @@ public class Exercicio02 {
             System.out.println("O número é ímpar");
         } else {
             System.out.println("O número é par");
-
         }
     }
 }

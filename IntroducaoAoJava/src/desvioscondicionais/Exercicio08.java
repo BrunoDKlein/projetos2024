@@ -20,16 +20,15 @@ public class Exercicio08 {
         double altura = entrada.nextDouble();
         System.out.println("Digite peso em Kg");
         double peso = entrada.nextDouble();
-        double imc = peso / Math.pow((altura/100), 2);
-
+        double imc = peso / Math.pow((altura / 100), 2);
         if (imc < 18.5) {
-            System.out.println("IMC "+imc+" = Abaixo do peso");
+            System.out.println("IMC " + imc + " = Abaixo do peso");
         } else if (imc <= 25) {
-            System.out.println("IMC "+imc+" = Peso ideal");
+            System.out.println("IMC " + imc + " = Peso ideal");
         } else if (imc <= 30) {
-            System.out.println("IMC "+imc+" = Acima do peso");
+            System.out.println("IMC " + imc + " = Acima do peso");
         } else {
-            System.out.println("IMC "+imc+" = Obeso");
+            System.out.println("IMC " + imc + " = Obeso");
         }
     }
 }

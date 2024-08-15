@@ -19,16 +19,15 @@ public class Exercicio09 {
         System.out.println("Digite o valor do produto");
         double valorOriginal = entrada.nextDouble();
         System.out.println("Digite a forma de pagamento: \n (a) para pagamento à vista em dinheiro ou cheque\n (b) para pagamento à vista no cartão de crédito\n (c) para pagamento em duas vezes\n (d) para pagamento em 10 vezes");
-        String mPagamento=entrada.next();
-        
+        String mPagamento = entrada.next();
         if (mPagamento.equalsIgnoreCase("a")) {
-            System.out.println("Valor final: R$"+(valorOriginal*0.9));
+            System.out.println("Valor final: R$" + (valorOriginal * 0.9));
         } else if (mPagamento.equalsIgnoreCase("b")) {
-            System.out.println("Valor final: R$"+(valorOriginal*0.85));
+            System.out.println("Valor final: R$" + (valorOriginal * 0.85));
         } else if (mPagamento.equalsIgnoreCase("c")) {
-            System.out.println("Valor final: R$"+(valorOriginal));
+            System.out.println("Valor final: R$" + (valorOriginal));
         } else if (mPagamento.equalsIgnoreCase("d")) {
-            System.out.println("Valor final: R$"+(valorOriginal*1.1));
+            System.out.println("Valor final: R$" + (valorOriginal * 1.1));
         }
     }
 

@@ -20,7 +20,6 @@ public class Exercicio03 {
         double a = entrada.nextDouble();
         System.out.println("Digite o valor b");
         double b = entrada.nextDouble();
-
         if (a == b) {
             c = a + b;
         } else {
