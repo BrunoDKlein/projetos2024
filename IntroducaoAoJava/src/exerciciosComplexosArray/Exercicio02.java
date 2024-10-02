@@ -51,13 +51,7 @@ public class Exercicio02 {
     double precoProduto[] = new double[10];
     String produtosVendidos[] = new String[20];
     int quantProdutosVendidos[] = new int[20];
-    int posicaoProdutoVendido = 0;
     double faturamentoPorProduto[] = new double[10];
-    double produtoComMaiorFaturamento = 0;
-    int posicaoProdutoComMaiorFaturamento;
-    double faturamentoTotal = 0;
-    int quantProdutoMaisVendido = 0;
-    int posicaoProdutoMaisVendido;
     int tamanhoProdutos = 0;
     int tamanhoVendas = 0;
 
@@ -109,14 +103,19 @@ public class Exercicio02 {
     public void cadastrarProduto() {
         System.out.println("Digite o nome do produto que quer cadastrar: ");
         produtos[tamanhoProdutos] = entrada.next();
-        System.out.println("Digite a qauntidade do produto que tem no estoque: ");
-        quantProdutosEstoque[tamanhoProdutos] = entrada.nextInt();
-        System.out.println("Digite o preco do produto: ");
-        precoProduto[tamanhoProdutos] = entrada.nextDouble();
+        do {
+            System.out.println("Digite a qauntidade do produto que tem no estoque: ");
+            quantProdutosEstoque[tamanhoProdutos] = entrada.nextInt();
+        } while (quantProdutosEstoque[tamanhoProdutos] < 0);
+        do {
+            System.out.println("Digite o preco do produto: ");
+            precoProduto[tamanhoProdutos] = entrada.nextDouble();
+        } while (precoProduto[tamanhoProdutos] < 0);
         tamanhoProdutos++;
     }
 
     public void realizarVenda() {
+        int posicaoProdutoVendido = 0;
         System.out.println("Digite o nome do produto que quer vender: ");
         produtosVendidos[tamanhoVendas] = entrada.next();
         System.out.println("Digite a quantidade vendida: ");
@@ -137,6 +136,7 @@ public class Exercicio02 {
     }
 
     public void exibirFaturamentoTotal() {
+        double faturamentoTotal = 0;
         for (int i = 0; i < tamanhoProdutos; i++) {
             faturamentoTotal = faturamentoTotal + faturamentoPorProduto[i];
             System.out.println("Faturamento do produto " + produtos[i] + ": " + faturamentoPorProduto[i]);
@@ -145,6 +145,8 @@ public class Exercicio02 {
     }
 
     public void exibirProdutoMaisVendido() {
+        int posicaoProdutoMaisVendido = 0;
+        int quantProdutoMaisVendido = 0;
         for (int i = 0; i < tamanhoProdutos; i++) {
             if (quantProdutosVendidos[i] > quantProdutoMaisVendido) {
                 quantProdutoMaisVendido = quantProdutosVendidos[i];
@@ -155,6 +157,8 @@ public class Exercicio02 {
     }
 
     public void exibirProdutoComMaiorFaturamento() {
+        int posicaoProdutoComMaiorFaturamento = 0;
+        double produtoComMaiorFaturamento = 0;
         for (int i = 0; i < tamanhoVendas; i++) {
             if (faturamentoPorProduto[i] > produtoComMaiorFaturamento) {
                 produtoComMaiorFaturamento = faturamentoPorProduto[i];

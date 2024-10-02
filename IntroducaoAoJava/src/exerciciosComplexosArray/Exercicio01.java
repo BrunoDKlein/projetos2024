@@ -23,11 +23,6 @@ public class Exercicio01 {
     double medias[] = new double[10];
     int tamanhoAlunos = 0;
     int tamanhoNotas = 0;
-    double maiorMedia = 0;
-    String alunoMaiorMedia;
-    String disciplinaEscolhida;
-    double maiorNotaDeterminadaDisciplina = 0;
-    String alunoMaiorNotaDeterminadaDisciplina = "";
 
     public static void main(String[] args) {
         Exercicio01 exercicio01 = new Exercicio01();
@@ -37,7 +32,7 @@ public class Exercicio01 {
     public void menuPrincipal() {
         do {
             System.out.println("=== Menu de Opções ===\n"
-                    + "0. Mostrar Relatório de Alunos"
+                    + "0. Mostrar Relatório de Alunos\n"
                     + "1. Cadastrar Alunos\n"
                     + "2. Cadastrar Notas\n"
                     + "3. Calcular Médias\n"
@@ -82,7 +77,7 @@ public class Exercicio01 {
 
     public void mostrarRelatório() {
         for (int i = 0; i < tamanhoAlunos; i++) {
-            System.out.println(alunos[i] + ": " + disciplinaA[i] + "; " + disciplinaB[i] + "; " + disciplinaC[i] + "; " + disciplinaD);
+            System.out.println(alunos[i] + ": " + disciplinaA[i] + "; " + disciplinaB[i] + "; " + disciplinaC[i] + "; " + disciplinaD[i]);
         }
 
     }
@@ -94,26 +89,10 @@ public class Exercicio01 {
     }
 
     public void cadastrarNotas() {
-
-        do {
-            System.out.println("Digite a nota da disciplina A: ");
-            disciplinaA[tamanhoNotas] = entrada.nextDouble();
-        } while (disciplinaA[tamanhoNotas] > 10 || disciplinaA[tamanhoNotas] < 0);
-
-        do {
-            System.out.println("Digite a nota da disciplina B: ");
-            disciplinaB[tamanhoNotas] = entrada.nextDouble();
-        } while (disciplinaB[tamanhoNotas] > 10 || disciplinaB[tamanhoNotas] < 0);
-
-        do {
-            System.out.println("Digite a nota da disciplina C: ");
-            disciplinaC[tamanhoNotas] = entrada.nextDouble();
-        } while (disciplinaC[tamanhoNotas] > 10 || disciplinaC[tamanhoNotas] < 0);
-
-        do {
-            System.out.println("Digite a nota da disciplina D: ");
-            disciplinaD[tamanhoNotas] = entrada.nextDouble();
-        } while (disciplinaD[tamanhoNotas] > 10 || disciplinaD[tamanhoNotas] < 0);
+        disciplinaA[tamanhoNotas] = validacaoNotas("A");
+        disciplinaB[tamanhoNotas] = validacaoNotas("B");
+        disciplinaC[tamanhoNotas] = validacaoNotas("C");
+        disciplinaD[tamanhoNotas] = validacaoNotas("D");
         tamanhoNotas++;
     }
 
@@ -130,6 +109,8 @@ public class Exercicio01 {
     }
 
     public void exibirAlunoMaiorMédia() {
+        String alunoMaiorMedia = "";
+        double maiorMedia = 0;
         for (int i = 0; i < 10; i++) {
             if (medias[i] > maiorMedia) {
                 maiorMedia = medias[i];
@@ -140,6 +121,9 @@ public class Exercicio01 {
     }
 
     public void exibirAlunoMaiorNotaEmDeterminadaDisciplina() {
+        String disciplinaEscolhida;
+        String alunoMaiorNotaDeterminadaDisciplina = "";
+        double maiorNotaDeterminadaDisciplina = 0;
         System.out.println("Escolha uma disciplina: ");
         disciplinaEscolhida = entrada.next();
         switch (disciplinaEscolhida) {
@@ -150,7 +134,6 @@ public class Exercicio01 {
                         alunoMaiorNotaDeterminadaDisciplina = alunos[i];
                     }
                 }
-                System.out.println("Aluno com maior nota nessa disciplina: " + alunoMaiorNotaDeterminadaDisciplina + "\nA nota desse aluno é " + maiorNotaDeterminadaDisciplina);
                 break;
             case "B":
                 for (int i = 0; i < tamanhoAlunos; i++) {
@@ -159,7 +142,6 @@ public class Exercicio01 {
                         alunoMaiorNotaDeterminadaDisciplina = alunos[i];
                     }
                 }
-                System.out.println("Aluno com maior nota nessa disciplina: " + alunoMaiorNotaDeterminadaDisciplina + "\nA nota desse aluno é " + maiorNotaDeterminadaDisciplina);
                 break;
             case "C":
                 for (int i = 0; i < tamanhoAlunos; i++) {
@@ -168,7 +150,6 @@ public class Exercicio01 {
                         alunoMaiorNotaDeterminadaDisciplina = alunos[i];
                     }
                 }
-                System.out.println("Aluno com maior nota nessa disciplina: " + alunoMaiorNotaDeterminadaDisciplina + "\nA nota desse aluno é " + maiorNotaDeterminadaDisciplina);
                 break;
             case "D":
                 for (int i = 0; i < tamanhoAlunos; i++) {
@@ -177,9 +158,10 @@ public class Exercicio01 {
                         alunoMaiorNotaDeterminadaDisciplina = alunos[i];
                     }
                 }
-                System.out.println("Aluno com maior nota nessa disciplina: " + alunoMaiorNotaDeterminadaDisciplina + "\nA nota desse aluno é " + maiorNotaDeterminadaDisciplina);
                 break;
         }
+        System.out.println("Aluno com maior nota nessa disciplina: " + alunoMaiorNotaDeterminadaDisciplina + "\nA nota desse aluno é " + maiorNotaDeterminadaDisciplina);
+
     }
 
     public void exibirListaAlunosResultadoFinal() {
@@ -190,5 +172,14 @@ public class Exercicio01 {
                 System.out.println("O aluno " + alunos[i] + " está reprovado");
             }
         }
+    }
+
+    public double validacaoNotas(String disciplina) {
+        double nota = 0;
+        do {
+            System.out.println("Digite a nota do aluno " + alunos[tamanhoNotas] + " na disciplina " + disciplina + ": ");
+            nota = entrada.nextDouble();
+        } while (nota > 10 || nota < 0);
+        return nota;
     }
 }
