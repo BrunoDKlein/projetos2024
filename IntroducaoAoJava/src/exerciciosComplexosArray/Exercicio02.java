@@ -54,6 +54,7 @@ public class Exercicio02 {
     double faturamentoPorProduto[] = new double[10];
     int tamanhoProdutos = 0;
     int tamanhoVendas = 0;
+    int posicaoProdutoVendido = 0;
 
     public static void main(String[] args) {
         Exercicio02 exercicio02 = new Exercicio02();
@@ -63,16 +64,21 @@ public class Exercicio02 {
     public void menuPrincipal() {
         do {
             System.out.println("=== Menu de Opções ===\n"
+                    + "0. Exibir Relatório de Produtos\n"
                     + "1. Cadastrar Produto\n"
                     + "2. Realizar Venda\n"
                     + "3. Exibir Faturamento Total\n"
                     + "4. Exibir Produto mais Vendido\n"
                     + "5. Exibir Produto com Maior Faturamento\n"
                     + "6. Relatório de Estoque Baixo\n"
-                    + "7. Sair do Programa\n"
-                    + "Escolha uma opção (1-7):");
+                    + "7. Exibir Relatório de Vendas\n"
+                    + "8. Sair do Programa\n"
+                    + "Escolha uma opção (0-8):");
             escolhaMenu = entrada.nextInt();
             switch (escolhaMenu) {
+                case 0:
+                    motrarRelatorioDeProdutos();
+                    break;
                 case 1:
                     cadastrarProduto();
                     break;
@@ -92,12 +98,44 @@ public class Exercicio02 {
                     relatorioEstoqueBaixo();
                     break;
                 case 7:
+                    mostrarRelatorioDeVendas();
+                    break;
+                case 8:
                     break;
                 default:
                     System.out.println("Opção inválida");
                     break;
             }
-        } while (escolhaMenu != 7);
+        } while (escolhaMenu != 8);
+    }
+
+    public void motrarRelatorioDeProdutos() {
+        System.out.println(
+                formatarSaida("Nome", 20)
+                + formatarSaida("Preço", 10)
+                + formatarSaida("Estoque", 10));
+        for (int i = 0; i < tamanhoProdutos; i++) {
+            System.out.println(formatarSaida(produtos[i], 20)
+                    + formatarSaida("R$ " + precoProduto[i], 10)
+                    + formatarSaida("" + quantProdutosEstoque[i], 10));
+        }
+    }
+
+    public void mostrarRelatorioDeVendas() {
+        System.out.println(
+                formatarSaida("Nome", 20)
+                + formatarSaida("Quantidade vendida", 25));
+        for (int i = 0; i < tamanhoVendas; i++) {
+            System.out.println(formatarSaida(produtosVendidos[i], 20)
+                    + formatarSaida("" + quantProdutosVendidos[i], 25) + "\n");
+        }
+    }
+
+    public String formatarSaida(String texto, int tamanho) {
+        while (texto.length() < tamanho) {
+            texto = " " + texto;
+        }
+        return texto;
     }
 
     public void cadastrarProduto() {
@@ -115,24 +153,37 @@ public class Exercicio02 {
     }
 
     public void realizarVenda() {
-        int posicaoProdutoVendido = 0;
         System.out.println("Digite o nome do produto que quer vender: ");
         produtosVendidos[tamanhoVendas] = entrada.next();
         System.out.println("Digite a quantidade vendida: ");
         quantProdutosVendidos[tamanhoVendas] = entrada.nextInt();
-        for (int i = 0; i < tamanhoProdutos; i++) {
-            if (produtos[i].equalsIgnoreCase(produtosVendidos[tamanhoVendas])) {
-                posicaoProdutoVendido = i;
-            }
-        }
-        if (quantProdutosVendidos[tamanhoVendas] <= quantProdutosEstoque[posicaoProdutoVendido]) {
+
+        if (existeProduto() && existeQuantidade()) {
+
             System.out.println("Venda registrada com sucesso");
             quantProdutosEstoque[posicaoProdutoVendido] = quantProdutosEstoque[posicaoProdutoVendido] - quantProdutosVendidos[tamanhoVendas];
             faturamentoPorProduto[posicaoProdutoVendido] = faturamentoPorProduto[posicaoProdutoVendido] + (precoProduto[posicaoProdutoVendido] * quantProdutosVendidos[tamanhoVendas]);
             tamanhoVendas++;
         } else {
-            System.out.println("Erro: não há produtos suficientes em estoque");
+
+            System.out.println(existeProduto() ? "Erro: não há produtos suficientes em estoque" : "Esse produto não foi encontrado");
         }
+    }
+
+    public boolean existeProduto() {
+        for (int i = 0; i < tamanhoProdutos; i++) {
+            if (produtos[i].equalsIgnoreCase(produtosVendidos[tamanhoVendas])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean existeQuantidade() {
+        if (quantProdutosVendidos[tamanhoVendas] <= quantProdutosEstoque[posicaoProdutoVendido]) {
+            return true;
+        }
+        return false;
     }
 
     public void exibirFaturamentoTotal() {
